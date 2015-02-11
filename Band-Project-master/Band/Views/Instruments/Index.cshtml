@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Band.Models.CheckOuts>
+
+@{
+    ViewBag.Title = "Check Out";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InstrumentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if(item.IsCheckedOut){
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.InstrumentName)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Check In", "CheckIn", new { id = item.ID })
+                </td>
+            </tr>
+         }
+    }
+
+</table>
